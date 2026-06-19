@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariage de Patient & Dorcas</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Georgia',serif;}
+
+body{background:#fdf6ee;color:#3a2e1e;}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(rgba(0,0,0,.48),rgba(0,0,0,.48)),
+             url('couple5.jpeg') center/cover no-repeat;
+  color:#fff;
+  padding:40px 20px;
+}
+
+.hero-subtitle{
+  font-size:1rem;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  opacity:.85;
+  margin-bottom:14px;
+}
+
+.hero h1{
+  font-size:clamp(2.4rem,7vw,5rem);
+  font-weight:700;
+  line-height:1.1;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+
+.heart{color:#e8a87c;margin:0 10px;}
+
+.hero-date{
+  margin-top:16px;
+  font-size:1.1rem;
+  opacity:.9;
+  letter-spacing:2px;
+}
+
+.countdown{
+  margin-top:24px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.cd-box{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:12px;
+  padding:12px 20px;
+  min-width:70px;
+}
+
+.cd-num{font-size:2rem;font-weight:700;display:block;}
+.cd-label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;opacity:.8;}
+
+/* ── GLOBAL SECTIONS ── */
+.section{padding:70px 20px;max-width:900px;margin:auto;}
+
+.section-title{
+  text-align:center;
+  font-size:1.8rem;
+  color:#8b5e3c;
+  margin-bottom:8px;
+}
+
+.ornament{
+  text-align:center;
+  color:#c9956a;
+  font-size:1.4rem;
+  margin-bottom:36px;
+  letter-spacing:6px;
+}
+
+/* ── INVITATION TEXT ── */
+.invitation-card{
+  background:#fff;
+  border-radius:20px;
+  padding:40px 36px;
+  box-shadow:0 4px 30px rgba(139,94,60,.12);
+  border:1px solid #f0dcc5;
+  text-align:center;
+  line-height:1.85;
+}
+
+.invitation-card .families{
+  font-size:1.05rem;
+  color:#5a3e28;
+  font-style:italic;
+  margin-bottom:18px;
+}
+
+.invitation-card .couple-names{
+  font-size:2rem;
+  color:#8b5e3c;
+  font-weight:700;
+  margin:18px 0;
+}
+
+.invitation-card .dates-line{
+  font-size:1rem;
+  color:#7a5035;
+  letter-spacing:1px;
+}
+
+/* ── PROGRAMME ── */
+.programme-wrapper{
+  display:grid;
+  gap:24px;
+}
+
+.day-block{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 2px 20px rgba(139,94,60,.1);
+  border:1px solid #f0dcc5;
+}
+
+.day-header{
+  background:linear-gradient(135deg,#c9956a,#a0663b);
+  color:#fff;
+  padding:16px 24px;
+  font-size:1.1rem;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.event-item{
+  padding:20px 24px;
+  border-bottom:1px solid #f5ebe0;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:16px;
+  align-items:start;
+}
+
+.event-item:last-child{border-bottom:none;}
+
+.event-icon{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.4rem;
+  flex-shrink:0;
+}
+
+.icon-civil{background:#e8f4fd;color:#2980b9;}
+.icon-church{background:#fef5e7;color:#d4a017;}
+.icon-party{background:#fde8f0;color:#c0392b;}
+
+.event-content h3{
+  font-size:1rem;
+  color:#5a3e28;
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.event-content .time{
+  font-size:.9rem;
+  color:#c9956a;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.event-content .place{
+  font-size:.85rem;
+  color:#6b5240;
+  line-height:1.6;
+}
+
+.event-content .ref{
+  font-size:.8rem;
+  color:#999;
+  margin-top:4px;
+  font-style:italic;
+}
+
+/* ── CONFIRM BTN ── */
+.confirm-section{
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#fdf0e4,#fde8d0);
+}
+
+.confirm-section h2{font-size:1.6rem;color:#8b5e3c;margin-bottom:8px;}
+.confirm-section p{color:#7a5035;margin-bottom:24px;font-size:.95rem;}
+
+.contacts{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px;
+  margin-bottom:28px;
+}
+
+.contact-chip{
+  background:#fff;
+  border:1px solid #e0c5a8;
+  border-radius:50px;
+  padding:10px 22px;
+  font-size:.9rem;
+  color:#5a3e28;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.contact-chip span{font-size:1rem;}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:16px 32px;
+  background:linear-gradient(135deg,#2ecc71,#27ae60);
+  color:#fff;
+  text-decoration:none;
+  border-radius:50px;
+  font-size:1.05rem;
+  font-weight:600;
+  box-shadow:0 4px 15px rgba(46,204,113,.4);
+  transition:transform .2s,box-shadow .2s;
+}
+
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,204,113,.5);}
+.btn svg{width:22px;height:22px;}
+
+/* ── MAP ── */
+.map-section{padding:60px 20px;max-width:900px;margin:auto;}
+
+.maps-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.map-card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 2px 16px rgba(139,94,60,.1);
+  border:1px solid #f0dcc5;
+}
+
+.map-card-header{
+  background:#f8f0e6;
+  padding:14px 18px;
+  font-size:.95rem;
+  font-weight:700;
+  color:#7a5035;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.map-card iframe{width:100%;height:200px;border:none;display:block;}
+
+.map-card-footer{
+  padding:12px 18px;
+  text-align:center;
+}
+
+.map-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 18px;
+  background:#c9956a;
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  font-size:.85rem;
+  font-weight:600;
+}
+
+/* ── ALBUM ── */
+#album{padding:70px 20px;max-width:1100px;margin:auto;}
+
+.album-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:16px;
+}
+
+.album-grid img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:14px;
+  cursor:pointer;
+  transition:transform .3s,box-shadow .3s;
+  border:2px solid #f0dcc5;
+}
+
+.album-grid img:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(139,94,60,.2);}
+
+/* ── LIGHTBOX ── */
+#lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+#lightbox img{max-width:90%;max-height:88vh;border-radius:10px;}
+
+#close-lb{
+  position:absolute;
+  top:20px;
+  right:28px;
+  color:#fff;
+  font-size:44px;
+  cursor:pointer;
+  line-height:1;
+  opacity:.8;
+  transition:opacity .2s;
+}
+#close-lb:hover{opacity:1;}
+
+/* ── QR ── */
+.qr-section{
+  padding:60px 20px;
+  text-align:center;
+  background:#fff;
+}
+
+.qr-card{
+  display:inline-block;
+  background:#fdf6ee;
+  border:1px solid #f0dcc5;
+  border-radius:20px;
+  padding:30px 40px;
+  box-shadow:0 2px 20px rgba(139,94,60,.1);
+}
+
+.qr-card p{
+  margin-top:14px;
+  color:#8b5e3c;
+  font-size:.9rem;
+  font-style:italic;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:linear-gradient(135deg,#3a2e1e,#5a3e28);
+  color:#f5e6d0;
+  text-align:center;
+  padding:36px 20px;
+  font-size:.95rem;
+  line-height:1.8;
+}
+
+footer .heart-big{font-size:2rem;display:block;margin-bottom:8px;}
+
+@media(max-width:600px){
+  .hero h1{font-size:2.2rem;}
+  .cd-num{font-size:1.5rem;}
+  .event-item{grid-template-columns:1fr;}
+  .event-icon{display:none;}
+}
+
+
+/* ======Added=============== */
+
+.map-details{
+    padding:20px;
+    text-align:center;
+}
+
+.map-details h3{
+    color:#8b5e3c;
+    margin-bottom:10px;
+    font-size:1.2rem;
+}
+
+.map-details p{
+    color:#6b5240;
+    line-height:1.7;
+    margin-bottom:12px;
+}
+
+.reference{
+    font-size:.9rem;
+    color:#a0663b;
+    background:#fff7ef;
+    padding:10px;
+    border-radius:10px;
+}
+
+.map-actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:12px;
+    margin-top:18px;
+}
+
+.map-btn{
+    padding:12px 18px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.map-btn.primary{
+    background:#c9956a;
+    color:white;
+}
+
+.map-btn.secondary{
+    background:#27ae60;
+    color:white;
+}
+
+.map-btn:hover{
+    transform:translateY(-2px);
+}
+
+
+/* =======Second====== */
+.location-preview{
+    padding:30px;
+    text-align:center;
+}
+
+.location-icon{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.location-preview h3{
+    color:#8b5e3c;
+    margin-bottom:12px;
+}
+
+.location-preview p{
+    color:#6b5240;
+    line-height:1.8;
+}
+
+.location-ref{
+    margin-top:12px;
+    padding:10px;
+    background:#fff7ef;
+    border-radius:10px;
+    color:#a0663b;
+}
+
+.map-actions{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.map-btn.primary{
+    background:#c9956a;
+    color:white;
+}
+
+.map-btn.secondary{
+    background:#27ae60;
+    color:white;
+}
+
+
+/* ==========Eglise Universelle de Jésus-Christ========= */
+
+.map-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    min-height: 350px;
+    color: white;
+}
+
+.map-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 1;
+}
+
+.map-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2;
+}
+
+.map-content {
+    position: relative;
+    z-index: 3;
+    padding: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div class="hero">
+  <p class="hero-subtitle">Invitation au Mariage</p>
+  <h1>Patient <span class="heart">❤</span> Dorcas</h1>
+  <p class="hero-date">14 – 15 Août 2026 &nbsp;·&nbsp; Lubumbashi</p>
+
+  <div class="countdown" id="countdown">
+    <div class="cd-box"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Jours</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Heures</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-min">--</span><span class="cd-label">Minutes</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-sec">--</span><span class="cd-label">Secondes</span></div>
+  </div>
+</div>
+
+<!-- ══════════════ INVITATION ══════════════ -->
+<div class="section">
+  <h2 class="section-title">Notre Invitation</h2>
+  <div class="ornament">— ✦ —</div>
+
+  <div class="invitation-card">
+    <p class="families">
+      Les familles <strong>KASONGO KISILA</strong> et <strong>KAZADI KASONGO</strong><br>
+      ont le réel plaisir de vous inviter au mariage de leur fils et fille
+    </p>
+
+    <p class="couple-names">Patient LIYA &amp; Dorcas DISHIKI</p>
+
+    <p class="dates-line">
+      qui aura lieu en date du :
+    </p>
+    <br>
+    <p style="font-size:1rem;color:#8b5e3c;font-weight:700;">Vendredi 14 Août 2026</p>
+    <p style="font-size:.9rem;color:#7a5035;">Mariage Civil</p>
+    <br>
+    <p style="font-size:1rem;color:#8b5e3c;font-weight:700;">Samedi 15 Août 2026</p>
+    <p style="font-size:.9rem;color:#7a5035;">Mariage Religieux &amp; Soirée Dansante</p>
+    <br>
+    <p style="font-size:.9rem;color:#aaa;font-style:italic;">Votre présence sera notre plus beau cadeau ✨</p>
+  </div>
+</div>
+
+<!-- ══════════════ PROGRAMME ══════════════ -->
+<div class="section" style="padding-top:0;">
+  <h2 class="section-title">Programme</h2>
+  <div class="ornament">— ✦ —</div>
+
+  <div class="programme-wrapper">
+
+    <!-- VENDREDI -->
+    <div class="day-block">
+      <div class="day-header">📅 Vendredi 14 Août 2026</div>
+
+      <div class="event-item">
+        <div class="event-icon icon-civil">⚖️</div>
+        <div class="event-content">
+          <h3>Mariage Civil</h3>
+          <p class="time">⏰ 8h00</p>
+          <p class="place">
+            <strong>Lieu :</strong> Commune de Lubumbashi<br>
+            <strong>Ville :</strong> Lubumbashi
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMEDI -->
+    <div class="day-block">
+      <div class="day-header">📅 Samedi 15 Août 2026</div>
+
+      <div class="event-item">
+        <div class="event-icon icon-church">⛪</div>
+        <div class="event-content">
+          <h3>Mariage Religieux</h3>
+          <p class="time">⏰ 14h00</p>
+          <p class="place">
+            <strong>Lieu :</strong> Église Universelle de Jésus Christ<br>
+            Station Porte Étroite<br>
+            <strong>Adresse :</strong> Av des Églises, Q/ Gambela II,<br>
+            C/ de Lubumbashi
+          </p>
+          <p class="ref">📍 Référence : Centre de Santé La Lumière</p>
+        </div>
+      </div>
+
+      <div class="event-item">
+        <div class="event-icon icon-party">🎉</div>
+        <div class="event-content">
+          <h3>Soirée Dansante</h3>
+          <p class="time">⏰ 19h00</p>
+          <p class="place">
+            <strong>Lieu :</strong> Salle St Paul<br>
+            <strong>Adresse :</strong> Av Otshudi coin Av du Collège St Paul,<br>
+            Q/ Kamisepe, C/ Annexe, Lubumbashi
+          </p>
+          <p class="ref">🛣️ Itinéraire : Marché Moïse, Route Kipopo<br>
+          📍 Référence : Collège St Paul</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ CONFIRMATION ══════════════ -->
+<div class="confirm-section">
+  <h2>Confirmer votre présence</h2>
+  <p>Merci de nous contacter pour confirmer votre participation</p>
+
+  <div class="contacts">
+    <div class="contact-chip"><span>📞</span> +243 999 304 827</div>
+    <div class="contact-chip"><span>👨‍👩‍👦</span> Mr, Mme, Couple...</div>
+  </div>
+
+  <a href="https://wa.me/243999304827" class="btn" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.559 4.122 1.532 5.855L.057 23.457a.75.75 0 0 0 .916.916l5.602-1.475A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.933 0-3.741-.522-5.29-1.432l-.38-.224-3.323.875.875-3.323-.224-.38A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    Confirmer via WhatsApp
+  </a>
+</div>
+
+
+<!-- ══════════════ LOCALISATION ══════════════ -->
+    <div class="map-section">
+      <h2 class="section-title">Localisations</h2>
+
+      <div class="ornament">— ✦ —</div>
+      <!-- <div class="maps-grid"> -->
+
+        <div class="map-card">
+          <div class="map-card">
+
+        <!-- Carte en arrière-plan -->
+        <iframe
+            class="map-background"
+            src="https://maps.google.com/maps?q=Eglise+Universelle+de+Jesus+Christ+Porte+Etroite+Lubumbashi&output=embed">
+        </iframe>
+
+        <!-- Couche sombre pour améliorer la lisibilité -->
+        <div class="map-overlay"></div>
+
+        <!-- Contenu -->
+        <div class="map-content">
+            <h3>⛪ Église Universelle de Jésus-Christ</h3>
+
+            <p>
+                Station Porte Étroite<br>
+                Av. des Églises<br>
+                Quartier Gambela II<br>
+                Lubumbashi, RDC
+            </p>
+
+            <a
+                href="https://maps.google.com/?q=Eglise+Universelle+de+Jesus+Christ+Porte+Etroite+Lubumbashi"
+                target="_blank"
+                class="map-btn">
+                📍 Ouvrir Google Maps
+            </a>
+        </div>
+
+    </div>
+
+
+<!-- ======================Salle================== -->
+
+    <div class="map-card">
+
+        <div class="map-card-header">
+            🎉 Salle St Paul — Soirée Dansante
+        </div>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=VOTRE_EMBED_CODE_ICI"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
+
+        <div class="map-details">
+
+            <h3>📍 Salle St Paul</h3>
+
+            <p>
+            Av. Otshudi, Coin Av. du Collège St Paul<br>
+            Quartier Kamisepe, Commune Annexe<br>
+            Lubumbashi, RDC
+            </p>
+
+            <p class="reference">
+            <strong>Référence :</strong>
+            Collège Saint Paul • Marché Moïse • Route Kipopo
+            </p>
+
+            <div class="map-actions">
+
+            <a
+                href="https://maps.google.com/?q=College+Saint+Paul+Kamisepe+Lubumbashi"
+                target="_blank"
+                class="map-btn primary">
+                📍 Ouvrir Google Maps
+            </a>
+
+            </div>
+
+        </div>
+
+        </div>
+  </div>
+</div>
+
+<!-- ══════════════ ALBUM PHOTO ══════════════ -->
+<section id="album">
+  <h2 class="section-title">Album Photo</h2>
+  <div class="ornament">— ✦ —</div>
+  <p style="text-align:center;margin-bottom:30px;color:#7a5035;font-style:italic;">
+    Revivez avec nous les plus beaux moments de cette journée inoubliable ❤️
+  </p>
+
+  <div class="album-grid">
+    <img src="couple1.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="couple2.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="couple3.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="couple4.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="couple5.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="couple6.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="pa1.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="ma1.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="pa2.jpeg" alt="Mariage Patient & Dorcas">
+    <img src="ma2.jpeg" alt="Mariage Patient & Dorcas">
+  </div>
+</section>
+
+<div id="lightbox">
+  <span id="close-lb">&times;</span>
+  <img id="lightbox-img" alt="Photo agrandie">
+</div>
+
+<!-- ══════════════ QR CODE ══════════════ -->
+<div class="qr-section">
+  <h2 class="section-title">QR Code d'invitation</h2>
+  <div class="ornament">— ✦ —</div>
+
+  <div class="qr-card">
+    <div id="qrcode"></div>
+
+    <p>Scannez pour accéder à cette invitation</p>
+
+    <a
+      href="https://VOTRE-LIEN-GITHUB-PAGES"
+      target="_blank"
+      class="map-btn"
+      style="margin-top:15px;">
+      🌐 Ouvrir l'invitation
+    </a>
+  </div>
+</div>
+
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <span class="heart-big">❤️</span>
+  <strong>Patient LIYA &amp; Dorcas DISHIKI</strong><br>
+  14 – 15 Août 2026 &nbsp;·&nbsp; Lubumbashi, RD Congo<br>
+  <span style="opacity:.6;font-size:.8rem;">Familles KASONGO KISILA &amp; KAZADI KASONGO</span>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+// COUNTDOWN vers le mariage civil (14 août 2026, 8h00)
+const weddingDate = new Date("August 14, 2026 08:00:00").getTime();
+
+function updateCountdown(){
+  const now   = Date.now();
+  const dist  = weddingDate - now;
+  if(dist <= 0){
+    document.getElementById("countdown").innerHTML =
+      '<div class="cd-box"><span class="cd-num">🎉</span><span class="cd-label">Le grand jour est arrivé !</span></div>';
+    return;
+  }
+  document.getElementById("cd-days") .textContent = Math.floor(dist/(1000*60*60*24));
+  document.getElementById("cd-hours").textContent = Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("cd-min")  .textContent = Math.floor((dist%(1000*60*60))/(1000*60));
+  document.getElementById("cd-sec")  .textContent = Math.floor((dist%(1000*60))/1000);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// LIGHTBOX
+document.querySelectorAll(".album-grid img").forEach(img=>{
+  img.addEventListener("click",()=>{
+    const lb = document.getElementById("lightbox");
+    document.getElementById("lightbox-img").src = img.src;
+    lb.style.display = "flex";
+  });
+});
+
+document.getElementById("close-lb").addEventListener("click",()=>{
+  document.getElementById("lightbox").style.display = "none";
+});
+
+document.getElementById("lightbox").addEventListener("click",e=>{
+  if(e.target === e.currentTarget)
+    document.getElementById("lightbox").style.display = "none";
+});
+</script>
+
+// ===For QR code========
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</body>
+</html>
